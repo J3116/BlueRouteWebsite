@@ -1,0 +1,132 @@
+/* Base HTML & Focus Styles */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* ---------------------------------------------------
+   1. Clean Layout Direction Rules (LTR vs RTL)
+--------------------------------------------------- */
+
+/* English / LTR Defaults */
+html[dir="ltr"] body {
+    text-align: left;
+    direction: ltr;
+}
+
+html[dir="ltr"] .navbar-nav {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+/* Arabic / RTL Overrides */
+html[dir="rtl"] body,
+:lang(ar) {
+    text-align: right;
+    direction: rtl;
+    font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+html[dir="rtl"] .navbar-nav {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+html[dir="rtl"] .ms-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+html[dir="rtl"] .me-3 {
+    margin-left: 1rem !important;
+    margin-right: 0 !important;
+}
+
+/* ---------------------------------------------------
+   2. Hero Section Fixes (Prevents Text Overlap)
+--------------------------------------------------- */
+
+.hero-header {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    /* Strips out the template's LTR background wave causing the text clip */
+    background-image: none !important;
+    background-color: var(--primary-color, #1E6091) !important;
+    padding-bottom: 3rem !important;
+}
+
+    .hero-header img {
+        max-width: 100%;
+        max-height: 380px;
+        height: auto;
+        position: relative;
+        z-index: 2;
+        object-fit: contain;
+    }
+
+    .hero-header .col-lg-6 {
+        position: relative;
+        z-index: 3;
+    }
+
+    /* Ensure white text visibility on blue background */
+    .hero-header h1,
+    .hero-header p {
+        color: #ffffff !important;
+        position: relative;
+        z-index: 5;
+    }
+
+    /* High contrast button fix */
+    .hero-header .btn {
+        position: relative;
+        z-index: 5;
+        background-color: #ffffff !important;
+        color: var(--primary-color, #1E6091) !important;
+        font-weight: 600;
+    }
+
+        .hero-header .btn:hover {
+            background-color: var(--dark-color, #0B2545) !important;
+            color: #ffffff !important;
+        }
+
+/* RTL Hero alignment & animation flips */
+html[dir="rtl"] .hero-header .text-lg-start {
+    text-align: right !important;
+}
+
+html[dir="rtl"] .hero-header .animated.slideInRight {
+    animation-name: slideInLeft !important;
+}
+/* Fix Breadcrumb Spacing and Separator Alignment for Arabic RTL */
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item {
+    padding-left: 0 !important;
+    padding-right: 0.5rem !important;
+}
+
+    [dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+        padding-right: 0 !important;
+        padding-left: 0.5rem !important;
+        float: right;
+    }

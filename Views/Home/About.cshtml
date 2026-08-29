@@ -1,0 +1,139 @@
+﻿@{
+    bool isArabic = ViewBag.IsArabic ?? false;
+    ViewData["Title"] = isArabic ? "من نحن" : "About Us";
+}
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 position-relative overflow-hidden"
+     style="background: linear-gradient(rgba(11, 37, 69, 0.75), rgba(11, 37, 69, 0.9)), url('/img/header-bg(2).jpg') center 30% no-repeat; background-size: cover; padding-top: 12rem; padding-bottom: 8rem;">
+
+    <div class="container position-relative">
+        <div class="row w-100 align-items-center">
+            <div class="col-lg-8 text-center @(isArabic ? "text-lg-end ms-auto" : "text-lg-start me-auto")">
+                <div class="d-inline-block border rounded-pill text-white px-3 py-1 mb-3"
+                     style="border-color: #4A90C4; font-size: 0.75rem; letter-spacing: 1px;">
+                    NAVIGATION &middot; EXPERIENCE &middot; SOLUTIONS
+                </div>
+                <h1 class="display-4 text-white mb-3 animated slideInDown fw-bold">
+                    @(isArabic ? "من نحن" : "About Us")
+                </h1>
+                <p class="fs-5 text-white-50 mb-3 animated slideInDown">
+                    @(isArabic ? "الريادة والخبرة في مجال الاستشارات والحلول البحرية في العقبة" : "Leadership and expertise in marine consultancy and solutions in Aqaba")
+                </p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb @(isArabic ? "justify-content-center justify-content-lg-end" : "justify-content-center justify-content-lg-start") mb-0">
+                        <li class="breadcrumb-item"><a class="text-white-50" asp-controller="Home" asp-action="Index">@(isArabic ? "الرئيسية" : "Home")</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">@(isArabic ? "من نحن" : "About")</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- About Section Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="position-relative h-100 rounded overflow-hidden shadow-sm border" style="min-height: 400px;">
+                    <img class="position-absolute w-100 h-100" src="~/img/about-marine.jpg" alt="Blue Route Marine Team" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">
+                    @(isArabic ? "تعرف علينا" : "Get To Know Us")
+                </div>
+                <h2 class="mb-4 text-dark fw-bold">
+                    @(isArabic ? "المسار الأزرق للاستشارات البحرية" : "Blue Route Marine Consultancy")
+                </h2>
+                <p class="mb-4 text-muted lh-lg">
+                    @(isArabic
+                                        ? "المسار الأزرق للاستشارات البحرية هي شركة متخصصة في تقديم الحلول والاستشارات في المجال البحري، من خلال فريق ذو خبرة عالية ومؤهلات عالمية. نقدم خدمات مبتكرة تساهم في تطوير القطاع البحري ورفع الكفاءة والاستدامة في منطقة العقبة."
+                                        : "Blue Route Marine Consultancy is a leading firm providing expert maritime solutions and consultancy services. Through our experienced team and global standards, we are committed to enhancing safety, efficiency, and sustainability in the maritime sector in Aqaba.")
+                </p>
+
+                <!-- Mission & Vision Highlights -->
+                <div class="row g-4 mb-4">
+                    <div class="col-sm-6">
+                        <div class="p-3 bg-light rounded border h-100">
+                            <h6 class="text-primary fw-bold mb-2"><i class="fas fa-bullseye me-2 ms-2"></i>@(isArabic ? "رؤيتنا" : "Our Vision")</h6>
+                            <p class="small text-muted mb-0">
+                                @(isArabic ? "أن تكون الشريك الاستشاري الرائد في تقديم حلول بحرية بمعايير عالمية، تساهم في تطوير القطاع البحري والخدمات اللوجستية في منطقة العقبة."
+                                                                : "To be the leading regional partner in delivering integrated solutions with global standards, contributing to the growth of the maritime and logistics sector in Aqaba.")
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="p-3 bg-light rounded border h-100">
+                            <h6 class="text-primary fw-bold mb-2"><i class="fas fa-flag me-2 ms-2"></i>@(isArabic ? "رسالتنا" : "Our Mission")</h6>
+                            <p class="small text-muted mb-0">
+                                @(isArabic ? "تقديم خدمات استشارية متكاملة وعالية الجودة. تركز على السلامة والكفاءة والامتثال لمتطلبات الاستدامة."
+                                                                : "To deliver integrated and high-quality consultancy services that focus on safety, efficiency, compliance and sustainability.")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check fa-2x text-primary me-3 ms-3"></i>
+                            <h6 class="mb-0 text-dark fw-bold">@(isArabic ? "خبرة محلية بمعايير عالمية" : "Global Standards")</h6>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check fa-2x text-primary me-3 ms-3"></i>
+                            <h6 class="mb-0 text-dark fw-bold">@(isArabic ? "حلول متكاملة ومبتكرة" : "Innovative Solutions")</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check fa-2x text-primary me-3 ms-3"></i>
+                            <h6 class="mb-0 text-dark fw-bold">@(isArabic ? "تعزيز الأمن والكفاءة" : "Enhancing Safety")</h6>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check fa-2x text-primary me-3 ms-3"></i>
+                            <h6 class="mb-0 text-dark fw-bold">@(isArabic ? "شراكات استراتيجية داعمة" : "Strategic Partnerships")</h6>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-primary rounded-pill py-3 px-5 mt-2 shadow-sm fw-bold" asp-controller="Contact" asp-action="Index">
+                    @(isArabic ? "تواصل معنا اليوم" : "Contact Us Today")
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About Section End -->
+<!-- Core Values Section Start -->
+<div class="container-xxl py-5 bg-light">
+    <div class="container">
+        <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+            <h6 class="text-primary text-uppercase">@(isArabic ? "قيمنا المؤسسية" : "Our Values")</h6>
+            <h2 class="mb-4">@(isArabic ? "المبادئ التي نلتزم بها" : "The Principles We Live By")</h2>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="p-4 bg-white rounded shadow-sm border h-100">
+                    <i class="fas fa-award fa-3x text-primary mb-3"></i>
+                    <h5 class="fw-bold mb-2">@(isArabic ? "الاحترافية" : "Professionalism")</h5>
+                    <p class="text-muted small mb-0">@(isArabic ? "أعلى معايير الجودة والدقة في كافة الأعمال والاستشارات." : "Highest standards of quality, precision and technical accuracy.")</p>
+                </div>
+            </div>
+            <div class="col-md-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="p-4 bg-white rounded shadow-sm border h-100">
+                    <i class="fas fa-handshake fa-3x text-primary mb-3"></i>
+                    <h5 class="fw-bold mb-2">@(isArabic ? "النزاهة" : "Integrity")</h5>
+                    <p class="text-muted small mb-0">@(isArabic ? "ثقة قائمة على الشفافية التامة والالتزام بالأمانة المهنية." : "Trust built on complete transparency, ethics, and accountability.")</p>
+                </div>
+            </div>
+            <div class="col-md-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="p-4 bg-white rounded shadow-sm border h-100">
+                    <i class="fas fa-lightbulb fa-3x text-primary mb-3"></i>
+                    <h5 class="fw-bold mb-2">@(isArabic ? "الابتكار" : "Innovation")</h5>
+                    <p class="text-muted small mb-0">@(isArabic ? "حلول مبتكرة تواكب التطورات المستمرة في قطاع الشحن والنقل." : "Forward-thinking solutions keeping pace with industry developments.")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Core Values Section End -->

@@ -1,0 +1,108 @@
+﻿@model BluelineWebsite.Models.HomeViewModel
+@{
+    ViewData["Title"] = Model.IsArabic ? "الرئيسية" : "Home";
+}
+
+<!-- Hero Section Start -->
+<div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="position-relative" style="height: 100vh; min-height: 600px; background: linear-gradient(rgba(9, 30, 62, 0.8), rgba(9, 30, 62, 0.85)), url('/img/hero-bg.jpg') center center no-repeat; background-size: cover;">
+        <div class="container h-100 d-flex align-items-center">
+            <div class="row w-100 align-items-center justify-content-center justify-content-lg-start">
+                <div class="col-lg-8 text-center text-lg-start">
+                    <h5 class="text-white text-uppercase mb-3 animated slideInDown" style="letter-spacing: 2px;">
+                        @(Model.IsArabic ? "المسار الأزرق للاستشارات البحرية" : "Blue Route Marine Consultancy")
+                    </h5>
+                    <h1 class="display-3 text-white mb-4 animated slideInDown fw-bold">
+                        @(Model.IsArabic ? "حلول بحرية بمعايير عالمية في قلب العقبة" : "Maritime Solutions with Global Standards in Aqaba")
+                    </h1>
+                    <p class="fs-5 text-white-50 mb-5 animated slideInDown lh-lg">
+                        @(Model.IsArabic
+                                                ? "شريكك الاستشاري الرائد في تقديم الاستشارات والحلول البحرية المتقدمة، نساهم في تطوير القطاع البحري والخدمات اللوجستية في منطقة العقبة والمملكة الأردنية الهاشمية."
+                                                : "Your leading regional partner in delivering integrated marine solutions and consultancy services, contributing to the growth of the maritime and logistics sector in Aqaba.")
+                    </p>
+                    <div class="d-flex justify-content-center justify-content-lg-start gap-3 animated slideInUp">
+                        <a asp-controller="Services" asp-action="Index" class="btn btn-primary rounded-pill py-3 px-5 fw-bold shadow">
+                            @(Model.IsArabic ? "اكتشف نطاق خدماتنا" : "Explore Our Services")
+                        </a>
+                        <a asp-controller="Contact" asp-action="Index" class="btn btn-outline-light rounded-pill py-3 px-5 fw-bold">
+                            @(Model.IsArabic ? "تواصل معنا" : "Contact Us")
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero Section End -->
+<!-- Quick Feature Strip Start (Core Value Pillars) -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="d-flex align-items-center bg-light rounded p-4 h-100 shadow-sm border">
+                    <div class="bg-white border rounded d-flex align-items-center justify-content-center me-3 ms-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-globe-americas fa-2x text-primary"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-2 text-dark fw-bold">@(Model.IsArabic ? "خبرة محلية بمعايير عالمية" : "Global Standards")</h5>
+                        <p class="mb-0 text-muted small">@(Model.IsArabic ? "فريق متحصص ذو كفاءة عالية يفهم السوق المحلي والعالمي" : "Specialized expert team with regional insight")</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="d-flex align-items-center bg-light rounded p-4 h-100 shadow-sm border">
+                    <div class="bg-white border rounded d-flex align-items-center justify-content-center me-3 ms-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-cogs fa-2x text-primary"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-2 text-dark fw-bold">@(Model.IsArabic ? "حلول متكاملة ومبتكرة" : "Innovative Solutions")</h5>
+                        <p class="mb-0 text-muted small">@(Model.IsArabic ? "مواكب للطورات وتقديم حلول عملية مميزة" : "Tailored to your operational needs")</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="d-flex align-items-center bg-light rounded p-4 h-100 shadow-sm border">
+                    <div class="bg-white border rounded d-flex align-items-center justify-content-center me-3 ms-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                    </div>
+                    <div>
+                        <h5 class="mb-2 text-dark fw-bold">@(Model.IsArabic ? "السلامة والاستدامة" : "Safety & Sustainability")</h5>
+                        <p class="mb-0 text-muted small">@(Model.IsArabic ? "الالتزام بأعلى معايير الجودة والأمان" : "Commitment to highest compliance standards")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Quick Feature Strip End -->
+<!-- Featured Services Section Start -->
+<div class="container-xxl py-5 bg-light">
+    <div class="container">
+        <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+            <h6 class="text-primary text-uppercase">@(Model.IsArabic ? "خدماتنا الاحترافية" : "Our Services")</h6>
+            <h2 class="mb-4">@(Model.IsArabic ? "نطاق خدماتنا الاستشارية" : "Our Core Consultancy Scope")</h2>
+        </div>
+        <div class="row g-4">
+            @if (Model.FeaturedServices != null && Model.FeaturedServices.Any())
+            {
+                @foreach (var service in Model.FeaturedServices)
+                {
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item bg-white rounded h-100 p-4 shadow-sm border">
+                            <div class="icon mb-3">
+                                <i class="fas @service.IconCssClass fa-2x text-primary"></i>
+                            </div>
+                            <h5 class="mb-3 fw-bold">@(Model.IsArabic? service.TitleAr: service.TitleEn)</h5>
+                            <p class="mb-4 text-muted">@(Model.IsArabic? service.ShortDescriptionAr: service.ShortDescriptionEn)</p>
+                            <a class="btn btn-outline-primary rounded-pill py-2 px-4" asp-controller="Services" asp-action="Index" asp-route-id="@service.Id">
+                                @(Model.IsArabic ? "اقرأ المزيد" : "Read More")
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<!-- Featured Services Section End -->
+    

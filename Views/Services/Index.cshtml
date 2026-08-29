@@ -1,0 +1,138 @@
+﻿@using Microsoft.AspNetCore.Localization
+@model IEnumerable<BluelineWebsite.Models.Service>
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    bool isArabic = requestCulture?.RequestCulture.Culture.Name.StartsWith("ar") ?? false;
+    ViewData["Title"] = isArabic ? "خدماتنا" : "Our Services";
+}
+
+<style>
+    .service-item {
+        transition: all 0.4s ease;
+        border: 1px solid transparent !important;
+    }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 1rem 3rem rgba(0,0,0,.15) !important;
+            border-color: rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .service-item .icon-box {
+            transition: all 0.4s ease;
+        }
+
+        .service-item:hover .icon-box {
+            background-color: var(--bs-primary) !important;
+        }
+
+            .service-item:hover .icon-box i {
+                color: #ffffff !important;
+            }
+
+    .service-btn {
+        transition: all 0.3s ease;
+        opacity: 0.8;
+    }
+
+    .service-item:hover .service-btn {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+</style>
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 position-relative overflow-hidden"
+     style="background: linear-gradient(rgba(11, 37, 69, 0.75), rgba(11, 37, 69, 0.9)), url('/img/header-bg(2).jpg') center 30% no-repeat; background-size: cover; padding-top: 12rem; padding-bottom: 8rem;">
+
+    <div class="container position-relative">
+        <div class="row w-100 align-items-center">
+            <div class="col-lg-8 text-center @(isArabic ? "text-lg-end ms-auto" : "text-lg-start me-auto")">
+                <div class="d-inline-block border rounded-pill text-white px-3 py-1 mb-3"
+                     style="border-color: #4A90C4; font-size: 0.75rem; letter-spacing: 1px;">
+                    NAVIGATION &middot; EXPERIENCE &middot; SOLUTIONS
+                </div>
+                <h1 class="display-4 text-white mb-3 animated slideInDown fw-bold">
+                    @(isArabic ? "الخدمات البحرية" : "Marine Services")
+                </h1>
+                <p class="fs-5 text-white-50 mb-3 animated slideInDown">
+                    @(isArabic ? "نقدم مجموعة شاملة من خدمات المعاينة والاستشارات الهندسية" : "Comprehensive surveying and engineering consultancy services")
+                </p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb @(isArabic ? "justify-content-center justify-content-lg-end" : "justify-content-center justify-content-lg-start") mb-0">
+                        <li class="breadcrumb-item"><a class="text-white-50" asp-controller="Home" asp-action="Index">@(isArabic ? "الرئيسية" : "Home")</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">@(isArabic ? "الخدمات" : "Services")</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Services Grid Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    var fullDescription = isArabic ? item.FullDescriptionAr : item.FullDescriptionEn;
+                    var detailPoints = fullDescription?
+                    .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
+                    var collapseId = $"details-{item.Id}";
+
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="card h-100 bg-light border-0 shadow-sm rounded p-4 text-center service-item">
+                            <div class="icon-box d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4 mx-auto shadow-sm" style="width: 80px; height: 80px;">
+                                <i class="fa @(string.IsNullOrEmpty(item.IconCssClass) ? "fa-ship" : item.IconCssClass) fa-2x text-primary"></i>
+                            </div>
+                            <h4 class="mb-3 text-dark fw-bold">
+                                @(isArabic? item.TitleAr: item.TitleEn)
+                            </h4>
+                            <p class="text-muted mb-3 flex-grow-1">
+                                @(isArabic? item.ShortDescriptionAr: item.ShortDescriptionEn)
+                            </p>
+
+                            @if (detailPoints.Length > 0)
+                            {
+                                <button class="btn btn-link text-decoration-none fw-bold mb-2 p-0"
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId">
+                                    @(isArabic ? "عرض التفاصيل" : "View Details") <i class="fas fa-chevron-down ms-1" style="font-size: 0.75rem;"></i>
+                                </button>
+                                <div class="collapse text-start" id="@collapseId">
+                                    <ul class="list-unstyled mb-3">
+                                        @foreach (var point in detailPoints)
+                                        {
+                                            <li class="mb-2">
+                                                <i class="fas fa-check text-primary me-2"></i>@point.Trim()
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+
+                            <div class="mt-auto pt-3 w-100">
+                                <a asp-controller="Contact" asp-action="Index" asp-route-service="@item.Slug"
+                                   class="btn btn-outline-primary w-100 rounded-pill py-2 fw-bold service-btn">
+                                    @(isArabic ? "طلب الخدمة" : "Request Service")
+                                    <i class="fas fa-arrow-@(isArabic ? "left" : "right") mx-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center py-5">
+                    <div class="p-5 bg-light rounded border">
+                        <i class="fa fa-folder-open fa-3x text-muted mb-3"></i>
+                        <h5>@(isArabic ? "لا توجد خدمات متاحة حالياً." : "No services available at the moment.")</h5>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Services Grid End -->

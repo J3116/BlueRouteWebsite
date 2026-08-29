@@ -1,0 +1,150 @@
+﻿@model BluelineWebsite.Models.ContactInquiry
+@{
+    bool isArabic = ViewBag.IsArabic ?? false;
+    ViewData["Title"] = isArabic ? "تواصل معنا" : "Contact Us";
+}
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 position-relative overflow-hidden"
+     style="background: linear-gradient(rgba(11, 37, 69, 0.75), rgba(11, 37, 69, 0.9)), url('/img/header-bg(2).jpg') center 30% no-repeat; background-size: cover; padding-top: 12rem; padding-bottom: 8rem;">
+
+    <div class="container position-relative">
+        <div class="row w-100 align-items-center">
+            <div class="col-lg-8 text-center @(isArabic ? "text-lg-end ms-auto" : "text-lg-start me-auto")">
+                <div class="d-inline-block border rounded-pill text-white px-3 py-1 mb-3"
+                     style="border-color: #4A90C4; font-size: 0.75rem; letter-spacing: 1px;">
+                    NAVIGATION &middot; EXPERIENCE &middot; SOLUTIONS
+                </div>
+                <h1 class="display-4 text-white mb-3 animated slideInDown fw-bold">
+                    @(isArabic ? "اتصل بنا" : "Contact Us")
+                </h1>
+                <p class="fs-5 text-white-50 mb-3 animated slideInDown">
+                    @(isArabic ? "تواصل معنا للاستفسارات التقنية وخدمات المعاينة والاستشارات" : "Get in touch with our experts for technical inquiries and surveys")
+                </p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb @(isArabic ? "justify-content-center justify-content-lg-end" : "justify-content-center justify-content-lg-start") mb-0">
+                        <li class="breadcrumb-item"><a class="text-white-50" asp-controller="Home" asp-action="Index">@(isArabic ? "الرئيسية" : "Home")</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">@(isArabic ? "اتصل بنا" : "Contact")</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Contact Section Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Contact Info Sidebar -->
+            <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">
+                    @(isArabic ? "معلومات التواصل" : "Contact Information")
+                </div>
+                <h2 class="mb-4 text-dark fw-bold">
+                    @(isArabic ? "طلب معاينة أو استشارة فنية" : "Request a Survey or Consultation")
+                </h2>
+                <p class="text-muted mb-4 lh-lg">
+                    @(isArabic
+                                        ? "فريقنا الهندسي متواجد في ميناء العقبة وخدماتنا تغطي المنطقة لمساعدة المالكين، وشركات التأمين، والمستأجرين."
+                                        : "Our specialized engineering team is based in Aqaba, offering prompt surveys and technical advisory for maritime stakeholders.")
+                </p>
+
+                <div class="d-flex align-items-center mb-4">
+                    <div class="btn-square bg-primary text-white rounded-circle me-3 ms-3">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0 text-dark fw-bold">@(isArabic ? "الموقع" : "Location")</h6>
+                        <span class="text-muted">@(isArabic ? "العقبة - المملكة الأردنية الهاشمية" : "Aqaba - Hashemite Kingdom of Jordan")</span>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center mb-4">
+                    <div class="btn-square bg-primary text-white rounded-circle me-3 ms-3">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0 text-dark fw-bold">@(isArabic ? "البريد الإلكتروني" : "Email")</h6>
+                        <span class="text-muted">info@bluerouteconsultancy.com</span>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center mb-4">
+                    <div class="btn-square bg-primary text-white rounded-circle me-3 ms-3">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0 text-dark fw-bold">@(isArabic ? "الهاتف" : "Phone")</h6>
+                        <span class="text-muted d-block" dir="ltr">+962 79 552 3238</span>
+                        <span class="text-muted d-block" dir="ltr">+962 79 090 6213</span>
+                        <span class="text-muted d-block" dir="ltr">+962 79 744 1270</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Area -->
+            <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="bg-light p-5 rounded border shadow-sm">
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+                            <i class="fas fa-check-circle me-2 ms-2"></i> @TempData["SuccessMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    <form asp-controller="Contact" asp-action="Index" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="FullName" class="form-control" placeholder="Full Name" />
+                                    <label asp-for="FullName">@(isArabic ? "الاسم الكامل *" : "Full Name *")</label>
+                                    <span asp-validation-for="FullName" class="text-danger small"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Email" class="form-control" placeholder="Email Address" />
+                                    <label asp-for="Email">@(isArabic ? "البريد الإلكتروني *" : "Email Address *")</label>
+                                    <span asp-validation-for="Email" class="text-danger small"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Phone" class="form-control" placeholder="Phone Number" />
+                                    <label asp-for="Phone">@(isArabic ? "رقم الهاتف" : "Phone Number")</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input asp-for="Subject" class="form-control" placeholder="Subject" />
+                                    <label asp-for="Subject">@(isArabic ? "الموضوع *" : "Subject *")</label>
+                                    <span asp-validation-for="Subject" class="text-danger small"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea asp-for="Message" class="form-control" placeholder="Message" style="height: 150px;"></textarea>
+                                    <label asp-for="Message">@(isArabic ? "تفاصيل الطلب / الرسالة *" : "Message Details *")</label>
+                                    <span asp-validation-for="Message" class="text-danger small"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button class="btn btn-primary w-100 py-3 rounded-pill fw-bold" type="submit">
+                                    <i class="fas fa-paper-plane me-2 ms-2"></i>
+                                    @(isArabic ? "إرسال الطلب" : "Submit Inquiry")
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact Section End -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,49 @@
+/* _content/BluelineWebsite/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand[b-85zwokmfvn] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-85zwokmfvn] {
+  color: #0077cc;
+}
+
+.btn-primary[b-85zwokmfvn] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-85zwokmfvn], .nav-pills .show > .nav-link[b-85zwokmfvn] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top[b-85zwokmfvn] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-85zwokmfvn] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-85zwokmfvn] {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy[b-85zwokmfvn] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer[b-85zwokmfvn] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}

@@ -1,0 +1,102 @@
+@model BluelineWebsite.Models.Service
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Service</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="TitleEn" class="control-label"></label>
+                <input asp-for="TitleEn" class="form-control" />
+                <span asp-validation-for="TitleEn" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ShortDescriptionEn" class="control-label"></label>
+                <input asp-for="ShortDescriptionEn" class="form-control" />
+                <span asp-validation-for="ShortDescriptionEn" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FullDescriptionEn" class="control-label"></label>
+                <input asp-for="FullDescriptionEn" class="form-control" />
+                <span asp-validation-for="FullDescriptionEn" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TitleAr" class="control-label"></label>
+                <input asp-for="TitleAr" class="form-control" />
+                <span asp-validation-for="TitleAr" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ShortDescriptionAr" class="control-label"></label>
+                <input asp-for="ShortDescriptionAr" class="form-control" />
+                <span asp-validation-for="ShortDescriptionAr" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FullDescriptionAr" class="control-label"></label>
+                <input asp-for="FullDescriptionAr" class="form-control" />
+                <span asp-validation-for="FullDescriptionAr" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Slug" class="control-label"></label>
+                <input asp-for="Slug" class="form-control" />
+                <span asp-validation-for="Slug" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IconCssClass" class="control-label"></label>
+                <input asp-for="IconCssClass" class="form-control" />
+                <span asp-validation-for="IconCssClass" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IsFeatured" class="control-label"></label>
+                <input asp-for="IsFeatured" class="form-check-input" />
+                <span asp-validation-for="IsFeatured" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IsActive" class="control-label"></label>
+                <input asp-for="IsActive" class="form-check-input" />
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CreatedAt" class="control-label"></label>
+                <input asp-for="CreatedAt" class="form-control" />
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UpdatedAt" class="control-label"></label>
+                <input asp-for="UpdatedAt" class="form-control" />
+                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Projects" class="control-label"></label>
+                <input asp-for="Projects" class="form-control" />
+                <span asp-validation-for="Projects" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

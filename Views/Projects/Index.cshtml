@@ -1,0 +1,99 @@
+﻿@using BluelineWebsite.Models
+@model IEnumerable<BluelineWebsite.Models.Project>
+@{
+    bool isArabic = ViewBag.IsArabic ?? false;
+    ViewData["Title"] = isArabic ? "مشاريعنا وسجل الأعمال" : "Our Marine Projects";
+}
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 position-relative overflow-hidden"
+     style="background: linear-gradient(rgba(11, 37, 69, 0.75), rgba(11, 37, 69, 0.9)), url('/img/header-bg(2).jpg') center 30% no-repeat; background-size: cover; padding-top: 12rem; padding-bottom: 8rem;">
+
+    <div class="container position-relative">
+        <div class="row w-100 align-items-center">
+            <div class="col-lg-8 text-center @(isArabic ? "text-lg-end ms-auto" : "text-lg-start me-auto")">
+                <div class="d-inline-block border rounded-pill text-white px-3 py-1 mb-3"
+                     style="border-color: #4A90C4; font-size: 0.75rem; letter-spacing: 1px;">
+                    NAVIGATION &middot; EXPERIENCE &middot; SOLUTIONS
+                </div>
+                <h1 class="display-4 text-white mb-3 animated slideInDown fw-bold">
+                    @(isArabic ? "مشاريعنا وسجل الإنجازات" : "Featured Marine Projects & Case Studies")
+                </h1>
+                <p class="fs-5 text-white-50 mb-3 animated slideInDown">
+                    @(isArabic ? "استعراض لأبرز معاينات السفن، والاستشارات الهندسية والمشاريع الميدانية" : "Showcase of vessel inspections, offshore engineering, and marine consultancy engagements")
+                </p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb @(isArabic ? "justify-content-center justify-content-lg-end" : "justify-content-center justify-content-lg-start") mb-0">
+                        <li class="breadcrumb-item"><a class="text-white-50" asp-controller="Home" asp-action="Index">@(isArabic ? "الرئيسية" : "Home")</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">@(isArabic ? "المشاريع" : "Projects")</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Projects Section Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var project in Model)
+                {
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="card h-100 shadow-sm border-0 rounded overflow-hidden">
+                            @if (!string.IsNullOrEmpty(project.ImageUrl))
+                            {
+                                <img src="@project.ImageUrl" class="card-img-top" alt="@project.Title" style="height: 220px; object-fit: cover;">
+                            }
+                            else
+                            {
+                                <div class="bg-light text-center py-5 border-bottom">
+                                    <i class="fa fa-ship fa-3x text-primary opacity-50"></i>
+                                </div>
+                            }
+                            <div class="card-body d-flex flex-column p-4">
+                                @if (project.Service != null)
+                                {
+                                    <span class="badge bg-light text-primary border align-self-start mb-2 px-3 py-1 rounded-pill">
+                                        @(isArabic? project.Service.TitleAr : project.Service.TitleEn)
+                                    </span>
+                                }
+                                <h5 class="card-title text-dark fw-bold mb-2">
+                                    @project.Title
+                                </h5>
+                                <small class="text-muted mb-3 d-block">
+                                    <i class="fa fa-user me-1 ms-1 text-primary"></i>
+                                    @project.ClientName
+                                </small>
+                                <p class="card-text text-muted flex-grow-1">
+                                    @project.Summary
+                                </p>
+                                <div class="pt-3 border-top mt-3 d-flex justify-content-between align-items-center text-muted small">
+                                    <span>
+                                        <i class="fa fa-map-marker-alt me-1 ms-1 text-primary"></i>
+                                        @project.Location
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-calendar-alt me-1 ms-1 text-primary"></i>
+                                        @project.CompletionDate.ToString("MMM yyyy")
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center py-5">
+                    <div class="p-5 bg-light rounded border">
+                        <i class="fa fa-folder-open fa-3x text-muted mb-3"></i>
+                        <h5>@(isArabic ? "لا توجد مشاريع مضافة حالياً" : "No project records found.")</h5>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Projects Section End -->
